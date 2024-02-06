@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+<!-- home.html -->
+{% block title %}Home Page{% endblock title %}
+
+
+{% block content %} 
+
+
+<div class="row">
+    {% for product in products %}
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Columna izquierda para la imagen del producto -->
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product }}" style="max-width: 100%; max-height: 100%;">
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Columna derecha para detalles del producto -->
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p>Categoría: {{ product.category.name }}</p>
+                            <p class="card-text">Precio: ${{ product.price }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock content %}

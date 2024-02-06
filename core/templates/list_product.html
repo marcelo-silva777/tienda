@@ -1,0 +1,46 @@
+{% extends 'base.html' %} 
+
+
+{% block titulo_principal %}
+
+
+<div id=titulo_pagina>
+    Lista de Productos Registradas
+</div>
+{% endblock %} 
+
+{% block content %} 
+    <h3>Listado de Carreras</h3>
+
+{% if object_list %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in object_list %}
+        <tr>
+            <th scope="row">{{ product.name }} </th>
+            <td>{{ product.category }}</td>
+            <td>${{ product.price }}</td>
+
+            <td><a class="btn btn-primary" href="{% url 'edit_product' product.id %}">Editar</a></td>
+            <td><a class="btn btn-danger" href="{% url 'delete_product' product.id %}">Eliminar</a></td>
+
+
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% else %}
+    <h1>No hay registros de carrera</h1>
+{% endif %} {% endblock %}
