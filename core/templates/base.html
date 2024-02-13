@@ -18,19 +18,20 @@
         </div>
         
         <div id="nav">
-            <ul>            
-                <li class="nav-item"><a href="{% url 'add_product' %}">Agregar producto</a></li>
-                <li class="nav-item"><a href="{% url 'list_products' %}">Listar Productos</a></li>
+            <ul>
+                <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a href="{% url 'list_products' %}">Ver Juegos</a></li>
                 <li class="nav-item"><a href="#">quiénes somos</a></li>
                 <li class="nav-item"><a href="#">contáctanos</a></li>
-
-
-                       
-                <li class="nav-item"><a href="#">registrarse</a></li>
-                <li class="nav-item"><a href="#">iniciar sesión</a></li>
-            
-                
-                              
+                {% if request.user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'list_product' %}">Gestionar Productos</a></li> 
+                <li class="nav-item"><a href="{% url 'add_product' %}">Agregar producto</a></li>      
+                <li class="nav-item"><a href="{% url 'exit' %}">Cerrar sesión</a></li>
+                {% else %} 
+                <li class="nav-item"><a href="{% url 'registro' %}">registrarse</a></li>
+                <li class="nav-item"><a href="{% url 'login' %}">iniciar sesión</a></li>
+                {% endif %} 
+                                         
             </ul>
         </div>                                 
     </nav>
